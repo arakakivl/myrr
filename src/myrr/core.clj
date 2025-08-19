@@ -13,7 +13,7 @@
             (let [final-path (build-full-path base-path path)
                   route-methods (dissoc routes :children)
                   updated-result (if (empty? route-methods) result (assoc result final-path route-methods))]
-              (into updated-result (retrieve-flat-routes final-path (get routes :children {}))))) 
+              (into updated-result (hash-set (retrieve-flat-routes final-path (get routes :children {}))))))
           {} base-routes))
 
 (defn routing-handler
